@@ -19,6 +19,9 @@ function Header() {
       <button className="btn btn-blue" onClick={() => navigate("/reviews")}>
         Reviews
       </button>
+      <button className="btn btn-blue" onClick={() => navigate("/categories")}>
+        Categories
+      </button>
     </header>
   );
 }
