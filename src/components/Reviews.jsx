@@ -9,7 +9,6 @@ function Reviews() {
   const [allReviews, setAllReviews] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [votes, setVotes] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
