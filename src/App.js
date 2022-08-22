@@ -4,6 +4,8 @@ import { UserContext } from "./components/UserContext";
 import Header from "./components/Header";
 import About from "./components/About";
 import Reviews from "./components/Reviews";
+import Categories from "./components/Categories";
+import SingleCategory from "./components/SingleCategory";
 
 function App() {
   const [user, setUser] = useState({
@@ -22,6 +24,11 @@ function App() {
           <Routes>
             <Route path="/" element={<About />}></Route>
             <Route path="/reviews" element={<Reviews />}></Route>
+            <Route path="/categories" element={<Categories />}></Route>
+            <Route
+              path="/reviews/:category_slug"
+              element={<SingleCategory />}
+            />
           </Routes>
         </div>
       </UserContext.Provider>
