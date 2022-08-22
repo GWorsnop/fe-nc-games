@@ -6,6 +6,7 @@ import About from "./components/About";
 import Reviews from "./components/Reviews";
 import Categories from "./components/Categories";
 import SingleCategory from "./components/SingleCategory";
+import SingleReview from "./components/SingleReview";
 
 function App() {
   const [user, setUser] = useState({
@@ -29,6 +30,7 @@ function App() {
               path="/reviews/:category_slug"
               element={<SingleCategory />}
             />
+            <Route path="/reviews/id/:review_id" element={<SingleReview />} />
           </Routes>
         </div>
       </UserContext.Provider>
