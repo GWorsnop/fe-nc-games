@@ -3,12 +3,14 @@ import { useContext } from "react";
 import { UserContext } from "./UserContext";
 import { useParams } from "react-router-dom";
 import getReviewById from "./api-interaction/getReviewById";
+import VotesButton from "./VotesButton";
 
 function SingleReview() {
   const { review_id } = useParams();
   const [review, setReview] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [votes, setVotes] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -68,11 +70,10 @@ function SingleReview() {
             </div>
             <div className="flex justify-between pt-2">
               <div className="flex justify-evenly w-60">
-                <p>Up Arrow</p>
-                <p>Down Arrow</p>
-                <p>
-                  <b>Votes:</b> {review.votes}
-                </p>
+                <VotesButton
+                  review_id={review.review_id}
+                  originalVote={review.votes}
+                />
               </div>
               <button
                 className="btn bg-white hover:bg-green-100 text-black text-xs"

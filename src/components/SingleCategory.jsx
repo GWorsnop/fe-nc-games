@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "./UserContext";
 import { Link, useParams } from "react-router-dom";
 import getReviewByCategory from "./api-interaction/getReviewByCategory";
+import VotesButton from "./VotesButton";
 
 function SingleCategory() {
   const { category_slug } = useParams();
@@ -74,11 +75,10 @@ function SingleCategory() {
                 </div>
                 <div className="flex justify-between pt-2">
                   <div className="flex justify-evenly w-60">
-                    <p>Up Arrow</p>
-                    <p>Down Arrow</p>
-                    <p>
-                      <b>Votes:</b> {review.votes}
-                    </p>
+                    <VotesButton
+                      review_id={review.review_id}
+                      originalVote={review.votes}
+                    />
                   </div>
                   <button
                     className="btn bg-white hover:bg-green-100 text-black text-xs"
