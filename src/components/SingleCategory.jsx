@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import getReviewByCategory from "./api-interaction/getReviewByCategory";
 
 function SingleCategory() {
@@ -38,9 +38,11 @@ function SingleCategory() {
                 key={review.review_id}
                 className="w-4/5 bg-slate-400 rounded-md shadow-md mb-6 py-4"
               >
-                <h3 className="text-2xl font-bold text-black">
-                  {review.title}
-                </h3>
+                <Link to={`/reviews/id/${review.review_id}`}>
+                  <h3 className="text-2xl font-bold text-black hover:text-teal-400">
+                    {review.title}
+                  </h3>
+                </Link>
                 <br />
                 <div className="flex justify-evenly text-base">
                   <p>
@@ -62,7 +64,7 @@ function SingleCategory() {
                 <br />
                 <div className="flex justify-evenly align-middle">
                   <img
-                    className="m-auto px-4 pb-2 rounded-3xl w-60 max-h-40"
+                    className="m-auto px-4 pb-2 rounded-3xl max-h-32"
                     src={review.review_img_url}
                     alt={review.review_id}
                   />
