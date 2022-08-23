@@ -4,7 +4,8 @@ import { UserContext } from "./UserContext";
 import { useParams } from "react-router-dom";
 import getReviewById from "./api-interaction/getReviewById";
 import VotesButton from "./VotesButton";
-import ShowComments from "./Comments";
+import Comments from "./Comments";
+import Expandable from "./Expandable";
 
 function SingleReview() {
   const { review_id } = useParams();
@@ -75,7 +76,10 @@ function SingleReview() {
                 originalVote={review.votes}
               />
             </div>
-            <ShowComments />
+            <p>{review.comment_count} Comments</p>
+            <Expandable>
+              <Comments review_id={review.review_id} />
+            </Expandable>
           </div>
         </div>
       </div>

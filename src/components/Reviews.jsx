@@ -4,6 +4,8 @@ import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 import getReviews from "./api-interaction/getReviews";
 import VotesButton from "./VotesButton";
+import Expandable from "./Expandable";
+import Comments from "./Comments";
 
 function Reviews() {
   const [allReviews, setAllReviews] = useState([]);
@@ -79,16 +81,11 @@ function Reviews() {
                       originalVote={review.votes}
                     />
                   </div>
-                  <button
-                    className="btn bg-white hover:bg-green-100 text-black text-xs"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      //show comments
-                    }}
-                  >
-                    Comments
-                  </button>
                 </div>
+                <p>{review.comment_count} Comments</p>
+                <Expandable>
+                  <Comments review_id={review.review_id} />
+                </Expandable>
               </div>
             );
           })}
