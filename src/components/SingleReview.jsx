@@ -4,6 +4,8 @@ import { UserContext } from "./UserContext";
 import { useParams } from "react-router-dom";
 import getReviewById from "./api-interaction/getReviewById";
 import VotesButton from "./VotesButton";
+import Comments from "./Comments";
+import Expandable from "./Expandable";
 
 function SingleReview() {
   const { review_id } = useParams();
@@ -68,23 +70,16 @@ function SingleReview() {
                 {review.review_body}
               </p>
             </div>
-            <div className="flex justify-between pt-2">
-              <div className="flex justify-evenly w-60">
-                <VotesButton
-                  review_id={review.review_id}
-                  originalVote={review.votes}
-                />
-              </div>
-              <button
-                className="btn bg-white hover:bg-green-100 text-black text-xs"
-                onClick={(e) => {
-                  e.preventDefault();
-                  //show comments
-                }}
-              >
-                Comments
-              </button>
+            <div className="flex justify-evenly w-60">
+              <VotesButton
+                review_id={review.review_id}
+                originalVote={review.votes}
+              />
             </div>
+            <p>{review.comment_count} Comments</p>
+            <Expandable>
+              <Comments review_id={review.review_id} />
+            </Expandable>
           </div>
         </div>
       </div>
