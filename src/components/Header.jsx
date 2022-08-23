@@ -13,15 +13,25 @@ function Header() {
       <h2 className="text-2xl text-black font-semibold">
         An online community for board games
       </h2>
-      <button className="btn btn-blue" onClick={() => navigate("/")}>
-        About
-      </button>
-      <button className="btn btn-blue" onClick={() => navigate("/reviews")}>
-        Reviews
-      </button>
-      <button className="btn btn-blue" onClick={() => navigate("/categories")}>
-        Categories
-      </button>
+      <div className="flex flex-row justify-center h-12">
+        <img
+          className="h-12 w-12 rounded-full object-center"
+          src={user.avatar_url}
+          alt={user.username}
+        />
+        <button className="btn btn-blue" onClick={() => navigate("/")}>
+          About
+        </button>
+        <button className="btn btn-blue" onClick={() => navigate("/reviews")}>
+          Reviews
+        </button>
+        <button
+          className="btn btn-blue"
+          onClick={() => navigate("/categories")}
+        >
+          Categories
+        </button>
+      </div>
     </header>
   );
 }

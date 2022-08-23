@@ -10,10 +10,10 @@ import SingleReview from "./components/SingleReview";
 
 function App() {
   const [user, setUser] = useState({
-    username: "Guest",
+    username: "tickle122",
+    name: "Tom Tickle",
     avatar_url:
-      "https://images.macrumors.com/t/n4CqVR2eujJL-GkUPhv1oao_PmI=/1600x/article-new/2019/04/guest-user-250x250.jpg",
-    kudos: 0,
+      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
   });
 
   return (

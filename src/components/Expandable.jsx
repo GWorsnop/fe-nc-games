@@ -19,6 +19,14 @@ function Expandable({ children }) {
       </button>
 
       {showComments ? children : null}
+      {showComments ? (
+        <button
+          className="btn bg-white hover:bg-teal-200 text-black text-xs"
+          onClick={toggleShow}
+        >
+          {showComments ? "Hide Comments" : "Show Comments"}
+        </button>
+      ) : null}
     </>
   );
 }

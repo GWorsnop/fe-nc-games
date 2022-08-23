@@ -4,16 +4,17 @@ import { UserContext } from "./UserContext";
 import getComments from "./api-interaction/getComments";
 import CommentVotesButton from "./CommentVotesButton";
 import getUsers from "./api-interaction/getUsers";
+import AddComment from "./AddComment";
 
 function Comments({ review_id }) {
-  const [comments, setComments] = useState([]);
+  const [commentList, setCommentList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
     getComments(review_id).then((data) => {
-      setComments(data);
+      setCommentList(data);
       setIsLoading(false);
     });
   }, [review_id]);
@@ -39,10 +40,10 @@ function Comments({ review_id }) {
   } else
     return (
       <>
-        {comments.map((comment, i) => {
+        {commentList.map((comment, i) => {
           let userUrl = "";
           users.forEach((item) => {
-            if (item.username == comment.author) {
+            if (item.username === comment.author) {
               userUrl = item.avatar_url;
             }
           });
@@ -75,6 +76,11 @@ function Comments({ review_id }) {
             </div>
           );
         })}
+        <AddComment
+          review_id={review_id}
+          commentList={commentList}
+          setCommentList={setCommentList}
+        />
       </>
     );
 }
