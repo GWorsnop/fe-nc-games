@@ -6,19 +6,26 @@ import getReviews from "./api-interaction/getReviews";
 import VotesButton from "./VotesButton";
 import Expandable from "./Expandable";
 import Comments from "./Comments";
+import FilterSearch from "./FilterSearch";
+import { useSearchParams } from "react-router-dom";
 
 function Reviews() {
   const [allReviews, setAllReviews] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews().then((data) => {
+    getReviews({
+      order: searchParams.get("order"),
+      sort_by: searchParams.get("sort_by"),
+      category: searchParams.get("category"),
+    }).then((data) => {
       setAllReviews(data);
       setIsLoading(false);
     });
-  }, []);
+  }, [searchParams]);
 
   if (isLoading) {
     return (
@@ -33,6 +40,12 @@ function Reviews() {
   } else
     return (
       <div>
+        <>
+          <FilterSearch
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+          />
+        </>
         <div className="grid grid-cols-1 min-w-screen justify-items-center">
           {allReviews.map((review, i) => {
             return (
