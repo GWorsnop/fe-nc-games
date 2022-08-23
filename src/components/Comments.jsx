@@ -5,11 +5,13 @@ import getComments from "./api-interaction/getComments";
 import CommentVotesButton from "./CommentVotesButton";
 import getUsers from "./api-interaction/getUsers";
 import AddComment from "./AddComment";
+import CommentDeleteButton from "./CommentDeleteButton";
 
 function Comments({ review_id }) {
   const [commentList, setCommentList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState([]);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -73,6 +75,13 @@ function Comments({ review_id }) {
                 comment_id={comment.comment_id}
                 originalVote={comment.votes}
               />
+              {comment.author === user.username ? (
+                <CommentDeleteButton
+                  comment={comment}
+                  commentList={commentList}
+                  setCommentList={setCommentList}
+                />
+              ) : null}
             </div>
           );
         })}
