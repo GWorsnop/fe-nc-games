@@ -8,6 +8,7 @@ import Categories from "./components/Categories";
 import SingleCategory from "./components/SingleCategory";
 import SingleReview from "./components/SingleReview";
 import NotFoundPage from "./components/NotFoundPage";
+import Users from "./components/Users";
 
 function App() {
   const [user, setUser] = useState({
@@ -32,6 +33,7 @@ function App() {
               element={<SingleCategory />}
             />
             <Route path="/reviews/id/:review_id" element={<SingleReview />} />
+            <Route path="/users/" element={<Users />} />
             <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
         </div>
