@@ -27,19 +27,16 @@ export default function CommentDeleteButton({
         setError(err);
       });
   }
-  if (error) {
-    return <p>Error: Could not delete comment.</p>;
-  } else
-    return (
-      <>
-        <button
-          className="justify-self-center text-center w-1/3 rounded-lg btn-blue"
-          onClick={handleDelete}
-          disabled={disable}
-        >
-          Delete
-        </button>
-        {error ? error : null}
-      </>
-    );
+  return (
+    <>
+      <button
+        className="justify-self-center text-center w-1/3 rounded-lg btn-blue"
+        onClick={handleDelete}
+        disabled={disable}
+      >
+        Delete
+      </button>
+      {error ? <p>Error: Could not delete comment.</p> : null}
+    </>
+  );
 }
