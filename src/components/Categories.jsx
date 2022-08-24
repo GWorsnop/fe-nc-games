@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 import getCategories from "./api-interaction/getCategories";
+import ExpandCategories from "./ExpandableCategories";
+import CategoryForm from "./CategoryForm";
 
 function Categories() {
   const [allCategories, setAllCategories] = useState([]);
@@ -52,6 +54,12 @@ function Categories() {
             );
           })}
         </div>
+        <ExpandCategories>
+          <CategoryForm
+            allCategories={allCategories}
+            setAllCategories={setAllCategories}
+          />
+        </ExpandCategories>
       </div>
     );
 }
