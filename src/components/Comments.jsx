@@ -12,6 +12,7 @@ function Comments({ review_id }) {
   const [commentList, setCommentList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState([]);
+  const [commented, setCommented] = useState(false);
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -94,7 +95,9 @@ function Comments({ review_id }) {
           review_id={review_id}
           commentList={commentList}
           setCommentList={setCommentList}
+          setCommented={setCommented}
         />
+        {commented ? <p>Comment added!</p> : null}
       </>
     );
 }

@@ -3,7 +3,12 @@ import { useContext } from "react";
 import { UserContext } from "./UserContext";
 import postComment from "./api-interaction/postComment";
 
-export default function AddComment({ review_id, commentList, setCommentList }) {
+export default function AddComment({
+  review_id,
+  commentList,
+  setCommentList,
+  setCommented,
+}) {
   const { user } = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [err, setErr] = useState(null);
@@ -15,6 +20,7 @@ export default function AddComment({ review_id, commentList, setCommentList }) {
     if (comment.length > 1) {
       postComment(review_id, user.username, comment)
         .then((res) => {
+          setCommented(true);
           setCommentList(commentList.concat([res]));
           setComment("");
         })
@@ -35,6 +41,7 @@ export default function AddComment({ review_id, commentList, setCommentList }) {
             className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
             value={comment}
             onChange={function (e) {
+              setCommented(false);
               setComment(e.target.value);
               setBadComment(false);
             }}
