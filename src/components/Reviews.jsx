@@ -96,9 +96,7 @@ function Reviews() {
                   </div>
                 </div>
                 <p>{review.comment_count} Comments</p>
-                <Expandable>
-                  <Comments review_id={review.review_id} />
-                </Expandable>
+                <Comments review_id={review.review_id} />
               </div>
             );
           })}
