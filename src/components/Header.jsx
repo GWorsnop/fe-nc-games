@@ -19,17 +19,29 @@ function Header() {
           src={user.avatar_url}
           alt={user.username}
         />
-        <button className="btn btn-blue" onClick={() => navigate("/")}>
+        <button
+          className="btn bg-slate-400 hover:bg-slate-200"
+          onClick={() => navigate("/")}
+        >
           About
         </button>
-        <button className="btn btn-blue" onClick={() => navigate("/reviews")}>
+        <button
+          className="btn bg-slate-400 hover:bg-slate-200"
+          onClick={() => navigate("/reviews")}
+        >
           Reviews
         </button>
         <button
-          className="btn btn-blue"
+          className="btn bg-slate-400 hover:bg-slate-200"
           onClick={() => navigate("/categories")}
         >
           Categories
+        </button>
+        <button
+          className="btn bg-slate-400 hover:bg-slate-200"
+          onClick={() => navigate("/users")}
+        >
+          Users
         </button>
       </div>
     </header>
