@@ -8,12 +8,14 @@ import Expandable from "./Expandable";
 import Comments from "./Comments";
 import FilterSearch from "./FilterSearch";
 import { useSearchParams } from "react-router-dom";
+import NavigatePages from "./NavigatePages";
 
 function Reviews() {
   const [allReviews, setAllReviews] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [total, setTotal] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -22,10 +24,17 @@ function Reviews() {
       order: searchParams.get("order"),
       sort_by: searchParams.get("sort_by"),
       category: searchParams.get("category"),
+      limit: searchParams.get("limit"),
+      p: searchParams.get("p"),
     })
       .then((data) => {
         setAllReviews(data);
         setIsLoading(false);
+        setTotal(data ? data[0].total_count : 0);
+        if (searchParams.get("p") === null) {
+          searchParams.set("p", 1);
+          console.log(searchParams.get("p"));
+        }
       })
       .catch((err) => {
         setIsLoading(false);
@@ -119,6 +128,12 @@ function Reviews() {
             );
           })}
         </div>
+        <NavigatePages
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+          allReviews={allReviews}
+          total_count={total}
+        />
       </div>
     );
 }
