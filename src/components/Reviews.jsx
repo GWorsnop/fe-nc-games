@@ -49,7 +49,9 @@ function Reviews() {
         <h3 className="text-xl font-bold">
           Sorry that category does not exist.
         </h3>
-        <h3 className="text-xl font-bold"> {error} </h3>
+        <Link to="/">
+          <button className="btn btn-blue">Go to Home </button>
+        </Link>
       </div>
     );
   } else

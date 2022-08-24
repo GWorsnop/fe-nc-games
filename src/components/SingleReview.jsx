@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import getReviewById from "./api-interaction/getReviewById";
 import VotesButton from "./VotesButton";
 import Comments from "./Comments";
@@ -45,7 +45,9 @@ function SingleReview() {
         <h3 className="text-xl font-bold">
           Sorry that review could not be found.
         </h3>
-        <h3 className="text-xl font-bold"> {error} </h3>
+        <Link to="/">
+          <button className="btn btn-blue">Go to Home </button>
+        </Link>
       </div>
     );
   } else
