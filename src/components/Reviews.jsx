@@ -61,6 +61,7 @@ function Reviews() {
           <FilterSearch
             searchParams={searchParams}
             setSearchParams={setSearchParams}
+            allReviews={allReviews}
           />
         </>
         <div className="grid grid-cols-1 min-w-screen justify-items-center">
