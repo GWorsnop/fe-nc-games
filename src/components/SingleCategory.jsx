@@ -46,6 +46,21 @@ function SingleCategory() {
         </Link>
       </div>
     );
+  } else if (allReviews.length === 0) {
+    return (
+      <div className="m-auto">
+        <h3 className="text-xl font-bold">
+          Sorry, there are no reviews in this category.
+        </h3>
+        <Link to="/categories">
+          <button className="btn btn-blue">Go back to Categories </button>
+        </Link>
+        <br />
+        <Link to="/">
+          <button className="btn btn-blue">Go to Home </button>
+        </Link>
+      </div>
+    );
   } else
     return (
       <div>
