@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 import getCategories from "./api-interaction/getCategories";
-import ExpandCategories from "./ExpandableCategories";
+import ExpandForm from "./ExpandableForm";
 import CategoryForm from "./CategoryForm";
 
 function Categories() {
@@ -33,12 +33,12 @@ function Categories() {
     return (
       <div>
         <div className="pb-8">
-          <ExpandCategories>
+          <ExpandForm>
             <CategoryForm
               allCategories={allCategories}
               setAllCategories={setAllCategories}
             />
-          </ExpandCategories>
+          </ExpandForm>
           <br />
         </div>
         <div className="grid gap-4 grid-cols-4 grid-rows-1 justify-items-center">
