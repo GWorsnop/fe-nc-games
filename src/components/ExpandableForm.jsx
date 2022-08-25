@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function ExpandCategories({ children }) {
+function ExpandForm({ children }) {
   const [showForm, setShowForm] = useState(false);
 
   function toggleShow() {
@@ -15,7 +15,7 @@ function ExpandCategories({ children }) {
         className="btn bg-white hover:bg-teal-200 text-black text-xs"
         onClick={toggleShow}
       >
-        {showForm ? "Hide Form" : "Add Category"}
+        {showForm ? "Hide Form" : "Add Item"}
       </button>
 
       {showForm ? children : null}
@@ -23,4 +23,4 @@ function ExpandCategories({ children }) {
   );
 }
 
-export default ExpandCategories;
+export default ExpandForm;
