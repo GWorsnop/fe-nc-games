@@ -22,7 +22,7 @@ export default function FilterSearch({
     return <p></p>;
   } else
     return (
-      <div className="pb-2 text-sm">
+      <div className="flex justify-center pb-2 text-sm">
         <label htmlFor="category">Category: </label>
         <select
           className="text-sm"

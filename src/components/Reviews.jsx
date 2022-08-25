@@ -9,6 +9,9 @@ import Comments from "./Comments";
 import FilterSearch from "./FilterSearch";
 import { useSearchParams } from "react-router-dom";
 import NavigatePages from "./NavigatePages";
+import { formatDate } from "./utils/formatDate";
+import ExpandForm from "./ExpandableForm";
+import ReviewForm from "./ReviewForm";
 
 function Reviews() {
   const [allReviews, setAllReviews] = useState([]);
@@ -69,6 +72,11 @@ function Reviews() {
     return (
       <div>
         <>
+          <ExpandForm>
+            <ReviewForm allReviews={allReviews} setAllReviews={setAllReviews} />
+          </ExpandForm>
+        </>
+        <>
           <FilterSearch
             searchParams={searchParams}
             setSearchParams={setSearchParams}
@@ -100,8 +108,8 @@ function Reviews() {
                   </p>
                   {/* Add a link to username*/}
                   <p>
-                    <b>Date Published:</b>
-                    {review.created_at}
+                    <b>Date Published: </b>
+                    {formatDate(review.created_at)}
                   </p>
                   {/* Add function to sort time*/}
                 </div>
