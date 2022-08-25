@@ -33,7 +33,9 @@ function Reviews() {
         setTotal(data ? data[0].total_count : 0);
         if (searchParams.get("p") === null) {
           searchParams.set("p", 1);
-          console.log(searchParams.get("p"));
+        }
+        if (searchParams.get("limit") === null) {
+          searchParams.set("limit", 10);
         }
       })
       .catch((err) => {

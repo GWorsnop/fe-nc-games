@@ -75,6 +75,27 @@ export default function FilterSearch({
           <option value="DESC">Descending</option>
           <option value="ASC">Ascending</option>
         </select>
+        <label className="pl-2 text-sm" htmlFor="order">
+          Reviews per Page:{" "}
+        </label>
+        <select
+          className="text-sm"
+          id="limit"
+          name="limit"
+          defaultValue={
+            searchParams.get("limit") ? searchParams.get("limit") : 10
+          }
+          onChange={(e) => {
+            searchParams.set("limit", e.target.value);
+            setSearchParams(searchParams);
+          }}
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="100">All</option>
+        </select>
         {allReviews.length === 0 ? (
           <div className="m-auto">
             <h3 className="text-xl font-bold">
