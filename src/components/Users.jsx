@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function Users() {
   const [allUsers, setAllUsers] = useState([]);
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
