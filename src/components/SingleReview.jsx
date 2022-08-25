@@ -6,6 +6,7 @@ import getReviewById from "./api-interaction/getReviewById";
 import VotesButton from "./VotesButton";
 import Comments from "./Comments";
 import Expandable from "./Expandable";
+import { formatDate } from "./utils/formatDate";
 
 function SingleReview() {
   const { review_id } = useParams();
@@ -72,8 +73,8 @@ function SingleReview() {
               </p>
               {/* Add a link to username*/}
               <p>
-                <b>Date Published:</b>
-                {review.created_at}
+                <b>Date Published: </b>
+                {formatDate(review.created_at)}
               </p>
               {/* Add function to sort time*/}
             </div>
