@@ -39,6 +39,7 @@ export default function CategoryForm({ allCategories, setAllCategories }) {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onChange={(event) => {
                   setCategorySlug(event.target.value);
+                  setError(null);
                   setPostSuccessful(null);
                 }}
                 type="text"
@@ -54,6 +55,7 @@ export default function CategoryForm({ allCategories, setAllCategories }) {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onChange={(event) => {
                   setCategoryDesc(event.target.value);
+                  setError(null);
                   setPostSuccessful(null);
                 }}
                 type="text"
@@ -65,24 +67,27 @@ export default function CategoryForm({ allCategories, setAllCategories }) {
 
           <div className="flex items-center justify-between py-4">
             <button
-              className="btn bg-gray-400 hover:bg-gray-500 text-xs"
+              className="btn bg-slate-400 hover:bg-slate-300 text-xs"
               type="reset"
               onClick={() => {
                 setCategorySlug("");
                 setCategoryDesc("");
+                setError(null);
                 setPostSuccessful(null);
               }}
             >
               Reset
             </button>
+            <p className="text-sm">
+              {error ? "Please fill out all fields." : null}
+            </p>
+            <p className="text-sm">{postSuccessful ? postSuccessful : null}</p>
             <button
-              className="btn bg-green-400 hover:bg-green-500 text-xs"
+              className="btn bg-teal-200 hover:bg-teal-300 text-xs"
               type="submit"
             >
               Add Category
             </button>
-            <p>{error ? error : null}</p>
-            <p>{postSuccessful ? postSuccessful : null}</p>
           </div>
         </form>
       </div>

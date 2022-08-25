@@ -32,12 +32,21 @@ function Categories() {
   } else
     return (
       <div>
+        <div className="pb-8">
+          <ExpandCategories>
+            <CategoryForm
+              allCategories={allCategories}
+              setAllCategories={setAllCategories}
+            />
+          </ExpandCategories>
+          <br />
+        </div>
         <div className="grid gap-4 grid-cols-4 grid-rows-1 justify-items-center">
           {allCategories.map((category, i) => {
             return (
               <div
                 key={category.slug}
-                className="w-60 h-40 bg-slate-400 rounded-md shadow-md mb-4"
+                className="w-60 h-40 bg-gray-200 rounded-md shadow-md mb-4"
               >
                 <h3 className="text-2xl font-semibold text-black pb-2">
                   {category.slug}
@@ -54,12 +63,6 @@ function Categories() {
             );
           })}
         </div>
-        <ExpandCategories>
-          <CategoryForm
-            allCategories={allCategories}
-            setAllCategories={setAllCategories}
-          />
-        </ExpandCategories>
       </div>
     );
 }
