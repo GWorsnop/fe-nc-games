@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import getReviewById from "./api-interaction/getReviewById";
 import VotesButton from "./VotesButton";
 import Comments from "./Comments";
@@ -13,13 +13,20 @@ function SingleReview() {
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [votes, setVotes] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
-    getReviewById(review_id).then((data) => {
-      setReview(data);
-      setIsLoading(false);
-    });
+    getReviewById(review_id)
+      .then((data) => {
+        setReview(data);
+        setIsLoading(false);
+        setError(null);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.message);
+      });
   }, [review_id]);
 
   if (isLoading) {
@@ -30,6 +37,17 @@ function SingleReview() {
         <div>
           <p className="loader"></p>
         </div>
+      </div>
+    );
+  } else if (error) {
+    return (
+      <div className="m-auto">
+        <h3 className="text-xl font-bold">
+          Sorry that review could not be found.
+        </h3>
+        <Link to="/">
+          <button className="btn btn-blue">Go to Home </button>
+        </Link>
       </div>
     );
   } else

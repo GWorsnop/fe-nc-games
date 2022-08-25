@@ -10,13 +10,19 @@ function SingleCategory() {
   const [allReviews, setAllReviews] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
-    getReviewByCategory(category_slug).then((data) => {
-      setAllReviews(data);
-      setIsLoading(false);
-    });
+    getReviewByCategory(category_slug)
+      .then((data) => {
+        setAllReviews(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.message);
+      });
   }, [category_slug]);
 
   if (isLoading) {
@@ -27,6 +33,17 @@ function SingleCategory() {
         <div>
           <p className="loader"></p>
         </div>
+      </div>
+    );
+  } else if (error) {
+    return (
+      <div className="m-auto">
+        <h3 className="text-xl font-bold">
+          Sorry that category does not exist.
+        </h3>
+        <Link to="/">
+          <button className="btn btn-blue">Go to Home </button>
+        </Link>
       </div>
     );
   } else

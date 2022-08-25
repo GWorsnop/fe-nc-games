@@ -43,7 +43,7 @@ function Categories() {
                 <h3 className="text-xs font-semibold px-2 text-black">
                   {category.description}
                 </h3>
-                <Link to={`/reviews/${category.slug}`}>
+                <Link to={`/reviews/category/${category.slug}`}>
                   <button className="btn bg-white hover:bg-teal-200 text-black text-xs py-2 align-baseline">
                     View reviews
                   </button>

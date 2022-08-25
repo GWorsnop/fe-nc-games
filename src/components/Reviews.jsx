@@ -14,6 +14,7 @@ function Reviews() {
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -21,10 +22,15 @@ function Reviews() {
       order: searchParams.get("order"),
       sort_by: searchParams.get("sort_by"),
       category: searchParams.get("category"),
-    }).then((data) => {
-      setAllReviews(data);
-      setIsLoading(false);
-    });
+    })
+      .then((data) => {
+        setAllReviews(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err.message);
+      });
   }, [searchParams]);
 
   if (isLoading) {
@@ -35,6 +41,17 @@ function Reviews() {
         <div>
           <p className="loader"></p>
         </div>
+      </div>
+    );
+  } else if (error) {
+    return (
+      <div className="m-auto">
+        <h3 className="text-xl font-bold">
+          Sorry that category does not exist.
+        </h3>
+        <Link to="/">
+          <button className="btn btn-blue">Go to Home </button>
+        </Link>
       </div>
     );
   } else

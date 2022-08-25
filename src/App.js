@@ -7,6 +7,7 @@ import Reviews from "./components/Reviews";
 import Categories from "./components/Categories";
 import SingleCategory from "./components/SingleCategory";
 import SingleReview from "./components/SingleReview";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   const [user, setUser] = useState({
@@ -27,10 +28,11 @@ function App() {
             <Route path="/reviews" element={<Reviews />}></Route>
             <Route path="/categories" element={<Categories />}></Route>
             <Route
-              path="/reviews/:category_slug"
+              path="/reviews/category/:category_slug"
               element={<SingleCategory />}
             />
             <Route path="/reviews/id/:review_id" element={<SingleReview />} />
+            <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
         </div>
       </UserContext.Provider>
