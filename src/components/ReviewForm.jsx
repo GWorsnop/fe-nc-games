@@ -29,7 +29,6 @@ export default function ReviewForm({ allReviews, setAllReviews }) {
     setError(null);
     postReview(owner, title, body, designer, category)
       .then((res) => {
-        console.log(res);
         setPostSuccessful("Review posted!");
         setAllReviews([res].concat(allReviews));
       })

@@ -7,6 +7,7 @@ import VotesButton from "./VotesButton";
 import Comments from "./Comments";
 import Expandable from "./Expandable";
 import { formatDate } from "./utils/formatDate";
+import ReviewDeleteButton from "./ReviewDeleteButton";
 
 function SingleReview() {
   const { review_id } = useParams();
@@ -51,6 +52,15 @@ function SingleReview() {
         </Link>
       </div>
     );
+  } else if (review.length === 0) {
+    return (
+      <div className="m-auto">
+        <h3 className="text-xl font-bold">Review has been deleted!</h3>
+        <Link to="/">
+          <button className="btn btn-blue">Go to Home </button>
+        </Link>
+      </div>
+    );
   } else
     return (
       <div>
@@ -74,7 +84,7 @@ function SingleReview() {
               {/* Add a link to username*/}
               <p>
                 <b>Date Published: </b>
-                {formatDate(review.created_at)}
+                {review.created_at ? formatDate(review.created_at) : null}
               </p>
               {/* Add function to sort time*/}
             </div>
@@ -95,6 +105,13 @@ function SingleReview() {
                 originalVote={review.votes}
               />
             </div>
+            {review.owner === user.username ? (
+              <ReviewDeleteButton
+                review={review}
+                reviewList={[review]}
+                setReviewList={setReview}
+              />
+            ) : null}
             <p>{review.comment_count} Comments</p>
             <Expandable>
               <Comments review_id={review.review_id} />

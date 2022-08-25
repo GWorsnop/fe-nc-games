@@ -12,6 +12,7 @@ import NavigatePages from "./NavigatePages";
 import { formatDate } from "./utils/formatDate";
 import ExpandForm from "./ExpandableForm";
 import ReviewForm from "./ReviewForm";
+import ReviewDeleteButton from "./ReviewDeleteButton";
 
 function Reviews() {
   const [allReviews, setAllReviews] = useState([]);
@@ -132,6 +133,13 @@ function Reviews() {
                     />
                   </div>
                 </div>
+                {review.owner === user.username ? (
+                  <ReviewDeleteButton
+                    review={review}
+                    reviewList={allReviews}
+                    setReviewList={setAllReviews}
+                  />
+                ) : null}
                 <p>{review.comment_count} Comments</p>
                 <Comments review_id={review.review_id} />
               </div>
