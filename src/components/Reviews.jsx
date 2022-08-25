@@ -21,6 +21,7 @@ function Reviews() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [total, setTotal] = useState(null);
   const [error, setError] = useState(null);
+  const type = "Review";
 
   useEffect(() => {
     setIsLoading(true);
@@ -73,7 +74,7 @@ function Reviews() {
     return (
       <div>
         <>
-          <ExpandForm>
+          <ExpandForm type={type}>
             <ReviewForm allReviews={allReviews} setAllReviews={setAllReviews} />
           </ExpandForm>
         </>

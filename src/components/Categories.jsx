@@ -10,6 +10,7 @@ function Categories() {
   const [allCategories, setAllCategories] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
+  const type = "Category";
 
   useEffect(() => {
     setIsLoading(true);
@@ -33,7 +34,7 @@ function Categories() {
     return (
       <div>
         <div className="pb-8">
-          <ExpandForm>
+          <ExpandForm type={type}>
             <CategoryForm
               allCategories={allCategories}
               setAllCategories={setAllCategories}

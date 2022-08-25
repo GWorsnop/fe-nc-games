@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-function ExpandForm({ children }) {
+function ExpandForm({ children, type }) {
   const [showForm, setShowForm] = useState(false);
 
   function toggleShow() {
@@ -15,7 +15,7 @@ function ExpandForm({ children }) {
         className="btn bg-white hover:bg-teal-200 text-black text-xs"
         onClick={toggleShow}
       >
-        {showForm ? "Hide Form" : "Add Item"}
+        {showForm ? "Hide Form" : `Add ${type}`}
       </button>
 
       {showForm ? children : null}
