@@ -21,7 +21,7 @@ function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
-        <div className="app min-h-screen bg-gradient-to-b from-gray-300 to-gray-500">
+        <div className="app min-h-screen bg-teal-50">
           <Header />
           <br />
           <Routes>

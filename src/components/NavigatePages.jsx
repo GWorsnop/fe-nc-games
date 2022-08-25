@@ -9,6 +9,7 @@ function NavigatePages({
 }) {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(Number(searchParams.get("p")));
+  const [limit, setLimit] = useState(Number(searchParams.get("limit")));
 
   function NextPage() {
     searchParams.set("p", Number(searchParams.get("p")) + 1);
@@ -19,7 +20,6 @@ function NavigatePages({
     searchParams.set("p", Number(searchParams.get("p")) - 1);
     setSearchParams(searchParams);
   }
-
   return (
     <>
       <button onClick={PrevPage} className={page === 1 ? "hidden" : ""}>
@@ -27,7 +27,7 @@ function NavigatePages({
       </button>
       <button
         onClick={NextPage}
-        className={total_count <= page * 10 ? "hidden" : ""}
+        className={total_count <= page * limit ? "hidden" : ""}
       >
         <ArrowRightIcon className="h-7 w-7 rounded-full" />
       </button>
@@ -35,8 +35,8 @@ function NavigatePages({
         <b>Total Reviews: </b> {total_count}
       </p>
       <p>
-        <b>Viewing: </b> {(page - 1) * 10 + 1} -{" "}
-        {total_count > page * 10 ? page * 10 : total_count}
+        <b>Viewing: </b> {(page - 1) * limit + 1} -{" "}
+        {total_count > page * limit ? page * limit : total_count}
       </p>
       <p className={error ? "text-base" : "hidden"}>
         Error: Could not change page.
