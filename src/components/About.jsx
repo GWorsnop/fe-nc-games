@@ -19,7 +19,7 @@ function About() {
   } else
     return (
       <div>
-        <h3 className="text-3xl font-bold">About page TBD</h3>
+        <h3 className="text-2xl font-bold pl-2">About page TBD</h3>
         <br />
       </div>
     );

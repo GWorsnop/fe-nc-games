@@ -15,7 +15,7 @@ function Header() {
             An online community for board games
           </h2>
         </div>
-        <div className="flex flex-row px-2">
+        <div className="flex flex-row pr-10">
           <div className="px-2">
             <img
               className="h-12 w-12 rounded-full object-center"
