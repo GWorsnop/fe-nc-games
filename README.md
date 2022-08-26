@@ -28,10 +28,9 @@ At the application's homepage, you will intially be sent to an About page, provi
 
 3. cd to the correct directory _(fe-nc-games)_ and run `npm start`
 
-It is recommended that you use Node v18.1.0 or higher.
-
 ---
 
 ## Recommended Node Version:
 
 - Node: v18.1.0
+- It is recommended that you use this version or higher.
