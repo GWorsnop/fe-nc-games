@@ -7,7 +7,8 @@ View Newsbloom: https://gworsnop-nc-games.netlify.app/
 
 ## Introduction
 
-### This repository contains the front-end NC-Games project. To see the backend repository, visit https://github.com/GWorsnop/nc-games or to view the hosted API, visit https://nc-games-gworsnop.herokuapp.com/
+### This repository contains the front-end NC-Games project. To see the backend repository, visit https://github.com/GWorsnop/nc-games 
+### Or to view the hosted API, visit https://nc-games-gworsnop.herokuapp.com/
 
 NC-Games is an application that serves news data in a similar manner to websites such as Reddit. It serves reviews and user data to clients, and allows interaction. The purpose of the site is to replicate an online community that enables users to review and discuss board games. You can interact with the site in a number of ways, such as logging in as a user, posting reviews, adding comments, upvoting and downvoting other comments and reviews and adding a new category of board game.
 
