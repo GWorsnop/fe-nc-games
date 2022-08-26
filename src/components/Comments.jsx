@@ -9,6 +9,7 @@ import CommentDeleteButton from "./CommentDeleteButton";
 import Expandable from "./Expandable";
 import { formatDate } from "./utils/formatDate";
 
+
 function Comments({ review_id }) {
   const [commentList, setCommentList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -73,6 +74,7 @@ function Comments({ review_id }) {
                     </div>
                     <p className="text-gray-400 text-sm">
                       {formatDate(comment.created_at)}
+
                     </p>
                   </div>
                 </div>
