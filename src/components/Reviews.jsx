@@ -4,7 +4,6 @@ import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 import getReviews from "./api-interaction/getReviews";
 import VotesButton from "./VotesButton";
-import Expandable from "./Expandable";
 import Comments from "./Comments";
 import FilterSearch from "./FilterSearch";
 import { useSearchParams } from "react-router-dom";

@@ -7,14 +7,14 @@ import getCategories from "./api-interaction/getCategories";
 export default function ReviewForm({ allReviews, setAllReviews }) {
   const { user } = useContext(UserContext);
   const [postSuccessful, setPostSuccessful] = useState(null);
-  const [owner, setOwner] = useState(user.username);
+  const [owner] = useState(user.username);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [designer, setDesigner] = useState("");
   const [category, setCategory] = useState("");
   const [error, setError] = useState(null);
   const [allCategories, setAllCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);

@@ -1,10 +1,7 @@
-import { useState, useEffect } from "react";
-import { useContext } from "react";
-import { UserContext } from "./UserContext";
+import { useState } from "react";
 
 function About() {
-  const { user } = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   if (isLoading) {
     return (

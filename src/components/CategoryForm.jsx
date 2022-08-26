@@ -1,11 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
-import { useContext } from "react";
-import { UserContext } from "./UserContext";
 import postCategory from "./api-interaction/postCategory";
 
 export default function CategoryForm({ allCategories, setAllCategories }) {
-  const { user } = useContext(UserContext);
   const [postSuccessful, setPostSuccessful] = useState(null);
   const [categorySlug, setCategorySlug] = useState("");
   const [categoryDesc, setCategoryDesc] = useState("");

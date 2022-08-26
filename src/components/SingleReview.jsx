@@ -14,7 +14,6 @@ function SingleReview() {
   const [review, setReview] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [votes, setVotes] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {

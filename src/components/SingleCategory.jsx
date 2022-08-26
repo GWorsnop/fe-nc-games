@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { useContext } from "react";
-import { UserContext } from "./UserContext";
 import { Link, useParams } from "react-router-dom";
 import getReviewByCategory from "./api-interaction/getReviewByCategory";
 import VotesButton from "./VotesButton";
@@ -8,7 +6,6 @@ import VotesButton from "./VotesButton";
 function SingleCategory() {
   const { category_slug } = useParams();
   const [allReviews, setAllReviews] = useState([]);
-  const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 

@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { useContext } from "react";
-import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 import getCategories from "./api-interaction/getCategories";
 import ExpandForm from "./ExpandableForm";
@@ -8,7 +6,6 @@ import CategoryForm from "./CategoryForm";
 
 function Categories() {
   const [allCategories, setAllCategories] = useState([]);
-  const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const type = "Category";
 

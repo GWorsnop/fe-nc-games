@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function Expandable({ children }) {
   const [showComments, setShowComments] = useState(false);

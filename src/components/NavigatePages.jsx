@@ -7,9 +7,9 @@ function NavigatePages({
   allReviews,
   total_count,
 }) {
-  const [error, setError] = useState(null);
-  const [page, setPage] = useState(Number(searchParams.get("p")));
-  const [limit, setLimit] = useState(Number(searchParams.get("limit")));
+  const [error] = useState(null);
+  const [page] = useState(Number(searchParams.get("p")));
+  const [limit] = useState(Number(searchParams.get("limit")));
 
   function NextPage() {
     searchParams.set("p", Number(searchParams.get("p")) + 1);
