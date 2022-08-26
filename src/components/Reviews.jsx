@@ -4,17 +4,23 @@ import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 import getReviews from "./api-interaction/getReviews";
 import VotesButton from "./VotesButton";
-import Expandable from "./Expandable";
 import Comments from "./Comments";
 import FilterSearch from "./FilterSearch";
 import { useSearchParams } from "react-router-dom";
+import NavigatePages from "./NavigatePages";
+import { formatDate } from "./utils/formatDate";
+import ExpandForm from "./ExpandableForm";
+import ReviewForm from "./ReviewForm";
+import ReviewDeleteButton from "./ReviewDeleteButton";
 
 function Reviews() {
   const [allReviews, setAllReviews] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [total, setTotal] = useState(null);
   const [error, setError] = useState(null);
+  const type = "Review";
 
   useEffect(() => {
     setIsLoading(true);
@@ -22,10 +28,19 @@ function Reviews() {
       order: searchParams.get("order"),
       sort_by: searchParams.get("sort_by"),
       category: searchParams.get("category"),
+      limit: searchParams.get("limit"),
+      p: searchParams.get("p"),
     })
       .then((data) => {
         setAllReviews(data);
         setIsLoading(false);
+        setTotal(data ? data[0].total_count : 0);
+        if (searchParams.get("p") === null) {
+          searchParams.set("p", 1);
+        }
+        if (searchParams.get("limit") === null) {
+          searchParams.set("limit", 10);
+        }
       })
       .catch((err) => {
         setIsLoading(false);
@@ -58,9 +73,15 @@ function Reviews() {
     return (
       <div>
         <>
+          <ExpandForm type={type}>
+            <ReviewForm allReviews={allReviews} setAllReviews={setAllReviews} />
+          </ExpandForm>
+        </>
+        <>
           <FilterSearch
             searchParams={searchParams}
             setSearchParams={setSearchParams}
+            allReviews={allReviews}
           />
         </>
         <div className="grid grid-cols-1 min-w-screen justify-items-center">
@@ -88,8 +109,8 @@ function Reviews() {
                   </p>
                   {/* Add a link to username*/}
                   <p>
-                    <b>Date Published:</b>
-                    {review.created_at}
+                    <b>Date Published: </b>
+                    {formatDate(review.created_at)}
                   </p>
                   {/* Add function to sort time*/}
                 </div>
@@ -112,12 +133,25 @@ function Reviews() {
                     />
                   </div>
                 </div>
+                {review.owner === user.username ? (
+                  <ReviewDeleteButton
+                    review={review}
+                    reviewList={allReviews}
+                    setReviewList={setAllReviews}
+                  />
+                ) : null}
                 <p>{review.comment_count} Comments</p>
                 <Comments review_id={review.review_id} />
               </div>
             );
           })}
         </div>
+        <NavigatePages
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+          allReviews={allReviews}
+          total_count={total}
+        />
       </div>
     );
 }

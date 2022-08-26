@@ -56,6 +56,7 @@ export default function AddComment({
         </button>
       </form>
       {badComment ? <p>Please write a comment before submitting</p> : null}
+      {err ? <p>Something went wrong, comment not posted.</p> : null}
     </div>
   );
 }

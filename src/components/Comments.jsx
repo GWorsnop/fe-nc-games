@@ -7,6 +7,8 @@ import getUsers from "./api-interaction/getUsers";
 import AddComment from "./AddComment";
 import CommentDeleteButton from "./CommentDeleteButton";
 import Expandable from "./Expandable";
+import { formatDate } from "./utils/formatDate";
+
 
 function Comments({ review_id }) {
   const [commentList, setCommentList] = useState([]);
@@ -71,7 +73,8 @@ function Comments({ review_id }) {
                       </p>
                     </div>
                     <p className="text-gray-400 text-sm">
-                      {comment.created_at}
+                      {formatDate(comment.created_at)}
+
                     </p>
                   </div>
                 </div>

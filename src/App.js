@@ -8,6 +8,7 @@ import Categories from "./components/Categories";
 import SingleCategory from "./components/SingleCategory";
 import SingleReview from "./components/SingleReview";
 import NotFoundPage from "./components/NotFoundPage";
+import Users from "./components/Users";
 
 function App() {
   const [user, setUser] = useState({
@@ -20,7 +21,7 @@ function App() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>
-        <div className="app min-h-screen bg-gradient-to-b from-gray-300 to-gray-500">
+        <div className="app min-h-screen bg-teal-50">
           <Header />
           <br />
           <Routes>
@@ -32,6 +33,7 @@ function App() {
               element={<SingleCategory />}
             />
             <Route path="/reviews/id/:review_id" element={<SingleReview />} />
+            <Route path="/users/" element={<Users />} />
             <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
         </div>

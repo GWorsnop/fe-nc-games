@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { useContext } from "react";
-import { UserContext } from "./UserContext";
 import { Link, useParams } from "react-router-dom";
 import getReviewByCategory from "./api-interaction/getReviewByCategory";
 import VotesButton from "./VotesButton";
@@ -8,7 +6,6 @@ import VotesButton from "./VotesButton";
 function SingleCategory() {
   const { category_slug } = useParams();
   const [allReviews, setAllReviews] = useState([]);
-  const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -41,6 +38,21 @@ function SingleCategory() {
         <h3 className="text-xl font-bold">
           Sorry that category does not exist.
         </h3>
+        <Link to="/">
+          <button className="btn btn-blue">Go to Home </button>
+        </Link>
+      </div>
+    );
+  } else if (allReviews.length === 0) {
+    return (
+      <div className="m-auto">
+        <h3 className="text-xl font-bold">
+          Sorry, there are no reviews in this category.
+        </h3>
+        <Link to="/categories">
+          <button className="btn btn-blue">Go back to Categories </button>
+        </Link>
+        <br />
         <Link to="/">
           <button className="btn btn-blue">Go to Home </button>
         </Link>

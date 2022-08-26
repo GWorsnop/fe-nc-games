@@ -16,5 +16,5 @@
 
 
 .app {
-  @apply text-center;
+  @apply font-serif;
 }

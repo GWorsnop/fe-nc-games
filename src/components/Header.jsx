@@ -1,36 +1,30 @@
-import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
+import HeaderNavBar from "./HeaderNavBar";
 
 function Header() {
   const { user } = useContext(UserContext);
-  let navigate = useNavigate();
 
   return (
-    <header>
+    <header className="bg-teal-400 w-screen">
       <br />
-      <h1 className="text-4xl text-black font-bold">NC-Games</h1>
-      <h2 className="text-2xl text-black font-semibold">
-        An online community for board games
-      </h2>
-      <div className="flex flex-row justify-center h-12">
-        <img
-          className="h-12 w-12 rounded-full object-center"
-          src={user.avatar_url}
-          alt={user.username}
-        />
-        <button className="btn btn-blue" onClick={() => navigate("/")}>
-          About
-        </button>
-        <button className="btn btn-blue" onClick={() => navigate("/reviews")}>
-          Reviews
-        </button>
-        <button
-          className="btn btn-blue"
-          onClick={() => navigate("/categories")}
-        >
-          Categories
-        </button>
+      <div className="flex justify-between">
+        <div className="flex-col">
+          <h1 className="text-4xl text-black font-semibold pl-5 ">NC-Games</h1>
+          <h2 className="text-2xl text-black pl-5 pb-5">
+            An online community for board games
+          </h2>
+        </div>
+        <div className="flex flex-row pr-10">
+          <div className="px-2">
+            <img
+              className="h-12 w-12 rounded-full object-center"
+              src={user.avatar_url}
+              alt={user.username}
+            />
+          </div>
+          <HeaderNavBar />
+        </div>
       </div>
     </header>
   );
