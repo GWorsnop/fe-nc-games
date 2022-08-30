@@ -1,6 +1,7 @@
 # NC-Games: My front-end project
 
-View Newsbloom: https://gworsnop-nc-games.netlify.app/
+Hosted Site: https://gworsnop-nc-games.netlify.app/
+
 (Chrome recommended. You can view NC-Games's mobile-first design by using Chrome DevTools)
 
 ---
