@@ -23,14 +23,14 @@ function About() {
           </h2>
           <p className="pb-5">
             NC-Games is an application that serves news data in a similar manner
-            to websites such as Reddit. It is a social website designed to The
-            purpose of the site is to replicate an online community that
-            facilitate board game ratings and discussion. Northcoders Games has
-            game reviews which are divided into categories. Each review has user
-            curated ratings which can be up or down voted using the API. Users
-            can also add comments about a review. This site was created with the
-            intention to consolidate my understanding of making a C.R.U.D
-            application from a front end perspective.
+            to websites such as Reddit. The purpose of the site is to replicate
+            an online community that facilitate board game ratings and
+            discussion. Northcoders Games has game reviews which are divided
+            into categories. Each review has user curated ratings which can be
+            up or down voted using the API. Users can also add comments about a
+            review. This site was created with the intention to consolidate my
+            understanding of making a C.R.U.D application from a front end
+            perspective.
           </p>
           <p className="font-semibold">
             This website has the functionality to:
