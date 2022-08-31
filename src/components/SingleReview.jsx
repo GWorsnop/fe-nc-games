@@ -98,7 +98,7 @@ function SingleReview() {
               </p>
               {/* Add a link to username*/}
               <p>
-                <b>Date Published: </b>
+                <b>Posted: </b>
                 {formatDate(review.created_at)}
               </p>
             </div>

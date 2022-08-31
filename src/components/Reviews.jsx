@@ -125,7 +125,7 @@ function Reviews() {
                     <b>Review by:</b> {review.owner}
                   </p>
                   <p>
-                    <b>Date Published: </b>
+                    <b>Posted: </b>
                     {formatDate(review.created_at)}
                   </p>
                 </div>
