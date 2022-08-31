@@ -6,7 +6,7 @@ function Header() {
   const { user } = useContext(UserContext);
 
   return (
-    <header className="bg-teal-500 w-screen sticky top-0">
+    <header className="bg-teal-500 w-screen sticky top-0 z-50">
       <br />
       <div className="grid grid-cols-2 pb-2">
         <h1 className="text-3xl sm:text-4xl text-black font-semibold pl-5">
