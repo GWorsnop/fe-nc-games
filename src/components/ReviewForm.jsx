@@ -138,19 +138,22 @@ export default function ReviewForm({ allReviews, setAllReviews }) {
               >
                 Reset
               </button>
-              <p className="text-sm"></p>
-              <p className="text-sm">
-                {postSuccessful ? postSuccessful : null}
-              </p>
+
               <button
                 className={
                   error
                     ? "btn bg-red-500 text-sm text-black rounded"
+                    : postSuccessful
+                    ? "btn bg-green-500 text-sm text-black rounded"
                     : "btn bg-teal-200 hover:bg-teal-500 text-sm text-black rounded"
                 }
                 type="submit"
               >
-                {error ? "Please fill out all fields" : "Submit"}
+                {error
+                  ? "Please fill out all fields"
+                  : postSuccessful
+                  ? `${postSuccessful}`
+                  : "Submit"}
               </button>
             </div>
           </form>

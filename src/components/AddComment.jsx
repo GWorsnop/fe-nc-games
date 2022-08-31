@@ -3,16 +3,12 @@ import { useContext } from "react";
 import { UserContext } from "./UserContext";
 import postComment from "./api-interaction/postComment";
 
-export default function AddComment({
-  review_id,
-  commentList,
-  setCommentList,
-  setCommented,
-}) {
+export default function AddComment({ review_id, commentList, setCommentList }) {
   const { user } = useContext(UserContext);
   const [comment, setComment] = useState("");
   const [err, setErr] = useState(null);
   const [badComment, setBadComment] = useState(false);
+  const [commented, setCommented] = useState(false);
 
   const handleSubmit = (e) => {
     setErr(null);
@@ -53,11 +49,17 @@ export default function AddComment({
             className={
               badComment
                 ? "flex flex-end px-3 py-2 text-sm text-black bg-red-500 rounded"
+                : commented
+                ? "flex flex-end px-3 py-2 text-sm text-black bg-green-500 rounded"
                 : "flex flex-end px-3 py-2 text-sm text-black bg-white hover:bg-teal-500 rounded"
             }
             onClick={handleSubmit}
           >
-            {badComment ? "Please write a comment before submitting" : "Submit"}
+            {badComment
+              ? "Please write a comment before submitting"
+              : commented
+              ? "Commented Posted!"
+              : "Submit"}
           </button>
         </div>
       </form>
