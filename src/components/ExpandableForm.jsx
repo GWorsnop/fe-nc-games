@@ -13,7 +13,7 @@ function ExpandForm({ children, type }) {
     <div className="flex flex-col justify-center">
       <div className="inline-block m-auto">
         <button
-          className="m-auto btn bg-teal-500 hover:bg-teal-300 text-black text-xs"
+          className="m-auto btn bg-teal-300 hover:bg-teal-500 text-black text-xs"
           onClick={toggleShow}
         >
           {showForm ? "Hide Form" : `Add ${type}`}
