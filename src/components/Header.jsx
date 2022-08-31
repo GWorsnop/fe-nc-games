@@ -6,24 +6,21 @@ function Header() {
   const { user } = useContext(UserContext);
 
   return (
-    <header className="bg-teal-400 w-screen">
+    <header className="bg-teal-500 w-screen sticky top-0">
       <br />
-      <div className="flex justify-between">
-        <div className="flex-col">
-          <h1 className="text-4xl text-black font-semibold pl-5 ">NC-Games</h1>
-          <h2 className="text-2xl text-black pl-5 pb-5">
-            An online community for board games
-          </h2>
-        </div>
-        <div className="flex flex-row pr-10">
-          <div className="px-2">
-            <img
-              className="h-12 w-12 rounded-full object-center"
-              src={user.avatar_url}
-              alt={user.username}
-            />
+      <div className="grid grid-cols-2 pb-2">
+        <h1 className="text-3xl sm:text-4xl text-black font-semibold pl-5">
+          NC-Games
+        </h1>
+        <div className="flex justify-end align">
+          <img
+            className="h-10 w-10 rounded-full object-right"
+            src={user.avatar_url}
+            alt={user.username}
+          />
+          <div className="pl-2 pb-2">
+            <HeaderNavBar />
           </div>
-          <HeaderNavBar />
         </div>
       </div>
     </header>
