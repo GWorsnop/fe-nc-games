@@ -13,7 +13,6 @@ function Comments({ review_id, comment_count }) {
   const [commentList, setCommentList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState([]);
-  const [commented, setCommented] = useState(false);
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -76,7 +75,7 @@ function Comments({ review_id, comment_count }) {
                     </p>
                   </div>
                 </div>
-                <p className="-mt-4 text-gray-500 text-xl text-center">
+                <p className="-mt-4 text-black text-xl text-center">
                   {comment.body}
                 </p>
                 <CommentVotesButton
@@ -98,9 +97,7 @@ function Comments({ review_id, comment_count }) {
           review_id={review_id}
           commentList={commentList}
           setCommentList={setCommentList}
-          setCommented={setCommented}
         />
-        {commented ? <p>Comment added!</p> : null}
       </>
     );
 }

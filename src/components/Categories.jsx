@@ -21,7 +21,7 @@ function Categories() {
   if (isLoading) {
     return (
       <div className="m-auto">
-        <h3 className="text-4xl text-center"> Categories </h3>
+        <h3 className="text-2xl text-center"> Categories </h3>
         <br />
         <div className="flex justify-center">
           <Loading />
@@ -32,7 +32,7 @@ function Categories() {
     return (
       <div>
         <div className="m-auto">
-          <h3 className="text-4xl text-center">Categories</h3>
+          <h3 className="text-2xl text-center">Categories</h3>
           <br />
           <>
             <ExpandForm type={type} className="flex justify-center">

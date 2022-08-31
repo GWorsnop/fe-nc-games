@@ -7,7 +7,7 @@ function About() {
   if (isLoading) {
     return (
       <div className="m-auto">
-        <h3 className="text-4xl text-center"> About </h3>
+        <h3 className="text-2xl text-center"> About </h3>
         <br />
         <Loading />
       </div>
@@ -15,7 +15,7 @@ function About() {
   } else
     return (
       <div className="m-auto flex flex-col justify-center items-center">
-        <h3 className="text-4xl text-center "> About </h3>
+        <h3 className="text-2xl text-center "> About </h3>
         <br />
         <div className="bg-teal-200 shadow-md rounded px-6 mb-4 w-4/5 min-h-96 flex flex-col items-center">
           <h2 className="font-bold text-xl py-6 underline">

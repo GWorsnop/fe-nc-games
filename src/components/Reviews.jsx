@@ -54,7 +54,7 @@ function Reviews() {
   if (isLoading) {
     return (
       <div className="m-auto">
-        <h3 className="text-4xl text-center"> Reviews </h3>
+        <h3 className="text-2xl text-center"> Reviews </h3>
         <br />
         <div className="flex justify-center">
           <Loading />
@@ -64,9 +64,9 @@ function Reviews() {
   } else if (error) {
     return (
       <div className="m-auto flex flex-col justify-center">
-        <h3 className="text-4xl text-center"> Reviews </h3>
+        <h3 className="text-2xl text-center"> Reviews </h3>
         <br />
-        <h3 className="text-2xl text-center">
+        <h3 className="text-xl text-center">
           This category currently has no reviews
         </h3>
         <br />
@@ -87,7 +87,7 @@ function Reviews() {
   } else
     return (
       <div className="m-auto">
-        <h3 className="text-4xl text-center"> Reviews </h3>
+        <h3 className="text-2xl text-center"> Reviews </h3>
         <br />
         <>
           <ExpandForm type={type}>

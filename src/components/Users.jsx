@@ -22,7 +22,7 @@ function Users() {
     return (
       <div className="m-auto">
         <div>
-          <h3 className="text-4xl text-center"> Choose your user </h3>
+          <h3 className="text-2xl text-center">Users</h3>
           <br />
           <div className="flex justify-center">
             <Loading />
@@ -33,7 +33,7 @@ function Users() {
   } else
     return (
       <div>
-        <h3 className="text-4xl text-center"> Choose your user </h3>
+        <h3 className="text-2xl text-center">Users</h3>
         <br />
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-center">
           {allUsers.map((user, i) => {
