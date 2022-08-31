@@ -29,15 +29,18 @@ export default function ReviewDeleteButton({
       });
   }
   return (
-    <>
+    <div className="flex justify-center">
       <button
-        className="justify-self-center text-center w-1/3 rounded-lg btn-blue"
+        className={
+          error
+            ? "px-3 py-2 text-sm text-black bg-red-500 rounded"
+            : "px-3 py-2 text-sm text-black bg-white hover:bg-red-500 rounded"
+        }
         onClick={handleDelete}
         disabled={disable}
       >
-        Delete
+        {error ? "Error: Could not delete review" : "Delete Review"}
       </button>
-      {error ? <p>Error: Could not delete review.</p> : null}
-    </>
+    </div>
   );
 }

@@ -1,13 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function NotFoundPage() {
+  let navigate = useNavigate();
+
   return (
-    <div className="m-auto">
-      <h3 className="text-xl font-bold">Sorry that page does not exist.</h3>
-      <Link to="/">
-        <button className="btn btn-blue">Go to Home </button>
-      </Link>
+    <div className="grid grid-cols-1 min-w-screen justify-items-center">
+      <h3 className="text-4xl text-center py-4">
+        Sorry that page does not exist
+      </h3>
+      <button
+        className="m-auto btn btn-blue pt-4"
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Go to Home
+      </button>
     </div>
   );
 }

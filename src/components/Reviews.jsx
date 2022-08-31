@@ -12,8 +12,11 @@ import { formatDate } from "./utils/formatDate";
 import ExpandForm from "./ExpandableForm";
 import ReviewForm from "./ReviewForm";
 import ReviewDeleteButton from "./ReviewDeleteButton";
+import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 function Reviews() {
+  let navigate = useNavigate();
   const [allReviews, setAllReviews] = useState([]);
   const { user } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -51,27 +54,41 @@ function Reviews() {
   if (isLoading) {
     return (
       <div className="m-auto">
-        <h3 className="text-xl font-bold"> Reviews: </h3>
+        <h3 className="text-4xl text-center"> Reviews </h3>
         <br />
-        <div>
-          <p className="loader"></p>
+        <div className="flex justify-center">
+          <Loading />
         </div>
       </div>
     );
   } else if (error) {
     return (
-      <div className="m-auto">
-        <h3 className="text-xl font-bold">
-          Sorry that category does not exist.
+      <div className="m-auto flex flex-col justify-center">
+        <h3 className="text-4xl text-center"> Reviews </h3>
+        <br />
+        <h3 className="text-2xl text-center">
+          This category currently has no reviews
         </h3>
-        <Link to="/">
-          <button className="btn btn-blue">Go to Home </button>
-        </Link>
+        <br />
+        <div className="m-auto flex justify-center">
+          <button
+            className="btn btn-blue"
+            onClick={() => {
+              setError(null);
+              searchParams.set("category", null);
+              navigate("/reviews");
+            }}
+          >
+            All Reviews{" "}
+          </button>
+        </div>
       </div>
     );
   } else
     return (
-      <div>
+      <div className="m-auto">
+        <h3 className="text-4xl text-center"> Reviews </h3>
+        <br />
         <>
           <ExpandForm type={type}>
             <ReviewForm allReviews={allReviews} setAllReviews={setAllReviews} />
@@ -84,20 +101,20 @@ function Reviews() {
             allReviews={allReviews}
           />
         </>
-        <div className="grid grid-cols-1 min-w-screen justify-items-center">
+        <div className="grid grid-cols-1 min-w-screen justify-items-center pt-2">
           {allReviews.map((review, i) => {
             return (
               <div
                 key={review.review_id}
-                className="w-4/5 bg-slate-400 rounded-md shadow-md mb-6 py-4"
+                className="w-4/5 bg-teal-200 rounded-md shadow-md mb-6 py-4"
               >
                 <Link to={`/reviews/id/${review.review_id}`}>
-                  <h3 className="text-2xl font-bold text-black hover:text-teal-400">
+                  <h3 className="text-2xl font-bold text-center text-black hover:text-teal-500 hover:underline px-2">
                     {review.title}
                   </h3>
                 </Link>
                 <br />
-                <div className="flex justify-evenly text-base">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-1 justify-center text-center">
                   <p>
                     <b>Designer:</b> {review.designer}
                   </p>
@@ -107,41 +124,45 @@ function Reviews() {
                   <p>
                     <b>Review by:</b> {review.owner}
                   </p>
-                  {/* Add a link to username*/}
                   <p>
                     <b>Date Published: </b>
                     {formatDate(review.created_at)}
                   </p>
-                  {/* Add function to sort time*/}
                 </div>
                 <br />
-                <div className="flex justify-evenly align-middle">
-                  <img
-                    className="m-auto px-4 pb-2 rounded-3xl max-h-32"
-                    src={review.review_img_url}
-                    alt={review.review_id}
-                  />
-                  <p className="text-base px-2 text-justify">
-                    {review.review_body}
-                  </p>
-                </div>
-                <div className="flex justify-between pt-2">
-                  <div className="flex justify-evenly w-60">
-                    <VotesButton
-                      review_id={review.review_id}
-                      originalVote={review.votes}
+                <div className="m-auto flex flex-col justify-center w-full">
+                  <div className="m-auto flex justify-center md:w-1/2 px-4">
+                    <img
+                      className="m-auto px-4 pb-2 rounded-3xl"
+                      src={review.review_img_url}
+                      alt={review.review_id}
                     />
                   </div>
+                  <div className="m-auto inline-block text-base px-6 text-justify">
+                    <p>{review.review_body}</p>
+                  </div>
                 </div>
-                {review.owner === user.username ? (
-                  <ReviewDeleteButton
-                    review={review}
-                    reviewList={allReviews}
-                    setReviewList={setAllReviews}
+                <div className="flex justify-evenly pt-2 sm:w-2/5 lg:w-1/5">
+                  <VotesButton
+                    review_id={review.review_id}
+                    originalVote={review.votes}
                   />
-                ) : null}
-                <p>{review.comment_count} Comments</p>
-                <Comments review_id={review.review_id} />
+                </div>
+                <div className="flex flex-col">
+                  <Comments
+                    review_id={review.review_id}
+                    comment_count={review.comment_count}
+                  />
+                </div>
+                <div>
+                  {review.owner === user.username ? (
+                    <ReviewDeleteButton
+                      review={review}
+                      reviewList={allReviews}
+                      setReviewList={setAllReviews}
+                    />
+                  ) : null}
+                </div>
               </div>
             );
           })}

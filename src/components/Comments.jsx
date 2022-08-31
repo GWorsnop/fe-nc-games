@@ -9,8 +9,7 @@ import CommentDeleteButton from "./CommentDeleteButton";
 import Expandable from "./Expandable";
 import { formatDate } from "./utils/formatDate";
 
-
-function Comments({ review_id }) {
+function Comments({ review_id, comment_count }) {
   const [commentList, setCommentList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [users, setUsers] = useState([]);
@@ -46,7 +45,7 @@ function Comments({ review_id }) {
   } else
     return (
       <>
-        <Expandable>
+        <Expandable comment_count={comment_count}>
           {commentList.map((comment, i) => {
             let userUrl = "";
             users.forEach((item) => {
@@ -64,21 +63,22 @@ function Comments({ review_id }) {
                   <img
                     src={userUrl}
                     className="relative rounded-lg -top-8 -mb-4 bg-white border h-20 w-20"
-                    alt="placeholder"
+                    alt={comment.author}
                   />
                   <div className="flex flex-col w-full">
                     <div className="flex flex-row justify-between">
-                      <p className="relative text-xl whitespace-nowrap truncate overflow-hidden">
+                      <p className="relative text-l whitespace-nowrap truncate overflow-hidden">
                         {comment.author}
                       </p>
                     </div>
                     <p className="text-gray-400 text-sm">
                       {formatDate(comment.created_at)}
-
                     </p>
                   </div>
                 </div>
-                <p className="-mt-4 text-gray-500">{comment.body}</p>
+                <p className="-mt-4 text-gray-500 text-xl text-center">
+                  {comment.body}
+                </p>
                 <CommentVotesButton
                   comment_id={comment.comment_id}
                   originalVote={comment.votes}

@@ -10,16 +10,17 @@ function ExpandForm({ children, type }) {
   }
 
   return (
-    <>
-      <button
-        className="btn bg-teal-200 hover:bg-teal-500 text-black text-xs"
-        onClick={toggleShow}
-      >
-        {showForm ? "Hide Form" : `Add ${type}`}
-      </button>
-
-      {showForm ? children : null}
-    </>
+    <div className="flex flex-col justify-center">
+      <div className="inline-block m-auto">
+        <button
+          className="m-auto btn bg-teal-500 hover:bg-teal-300 text-black text-xs"
+          onClick={toggleShow}
+        >
+          {showForm ? "Hide Form" : `Add ${type}`}
+        </button>
+      </div>
+      <div className="m-auto sm:w-3/5">{showForm ? children : null}</div>
+    </div>
   );
 }
 

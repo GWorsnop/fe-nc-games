@@ -11,7 +11,7 @@
 }
 
 .btn-blue:hover {
-  @apply bg-teal-200;
+  @apply bg-teal-500;
 }
 
 

@@ -64,7 +64,7 @@ function VotesButton({ review_id, originalVote }) {
   }
 
   return (
-    <>
+    <div className="flex w-full justify-evenly">
       <button onClick={upVote} disabled={decreased}>
         <ArrowCircleUpIcon
           className={
@@ -89,7 +89,7 @@ function VotesButton({ review_id, originalVote }) {
       <p className={error ? "text-base" : "hidden"}>
         Error: Could not update votes.
       </p>
-    </>
+    </div>
   );
 }
 

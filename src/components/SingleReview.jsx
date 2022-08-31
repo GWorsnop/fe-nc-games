@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import getReviewById from "./api-interaction/getReviewById";
 import VotesButton from "./VotesButton";
 import Comments from "./Comments";
-import Expandable from "./Expandable";
 import { formatDate } from "./utils/formatDate";
 import ReviewDeleteButton from "./ReviewDeleteButton";
+import Loading from "./Loading";
 
 function SingleReview() {
+  let navigate = useNavigate();
+
   const { review_id } = useParams();
   const [review, setReview] = useState([]);
   const { user } = useContext(UserContext);
@@ -33,44 +35,58 @@ function SingleReview() {
   if (isLoading) {
     return (
       <div className="m-auto">
-        <h3 className="text-xl font-bold"> Reviews: </h3>
+        <h3 className="text-4xl text-center"> Review </h3>
         <br />
-        <div>
-          <p className="loader"></p>
+        <div className="flex justify-center">
+          <Loading />
         </div>
       </div>
     );
   } else if (error) {
     return (
-      <div className="m-auto">
-        <h3 className="text-xl font-bold">
-          Sorry that review could not be found.
+      <div className="grid grid-cols-1 min-w-screen justify-items-center">
+        <h3 className="text-4xl text-center py-4">
+          Sorry that page does not exist
         </h3>
-        <Link to="/">
-          <button className="btn btn-blue">Go to Home </button>
-        </Link>
+        <button
+          className="m-auto btn btn-blue pt-4"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Go to Home
+        </button>
       </div>
     );
   } else if (review.length === 0) {
     return (
       <div className="m-auto">
-        <h3 className="text-xl font-bold">Review has been deleted!</h3>
-        <Link to="/">
-          <button className="btn btn-blue">Go to Home </button>
-        </Link>
+        <h3 className="text-4xl text-center">Review has been deleted!</h3>
+        <button
+          className="m-auto btn btn-blue pt-4"
+          onClick={() => {
+            navigate("/reviews");
+          }}
+        >
+          Go to All Reviews
+        </button>
       </div>
     );
   } else
     return (
-      <div>
+      <div className="m-auto">
+        <h3 className="text-4xl text-center"> Review {review.review_id} </h3>
+        <br />
         <div className="grid grid-cols-1 min-w-screen justify-items-center">
           <div
             key={review.review_id}
-            className="w-4/5 bg-slate-400 rounded-md shadow-md mb-6 py-4"
+            className="w-4/5 bg-teal-200 rounded-md shadow-md mb-6 py-4"
           >
-            <h3 className="text-2xl font-bold text-black">{review.title}</h3>
+            <h3 className="text-2xl font-bold text-center text-black">
+              {review.title}
+            </h3>
             <br />
-            <div className="flex justify-evenly text-base">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 grid-rows-1 justify-center text-center">
               <p>
                 <b>Designer:</b> {review.designer}
               </p>
@@ -83,38 +99,43 @@ function SingleReview() {
               {/* Add a link to username*/}
               <p>
                 <b>Date Published: </b>
-                {review.created_at ? formatDate(review.created_at) : null}
+                {formatDate(review.created_at)}
               </p>
-              {/* Add function to sort time*/}
             </div>
             <br />
-            <div className="flex justify-evenly align-middle">
-              <img
-                className="m-auto px-4 pb-2 rounded-3xl max-h-32"
-                src={review.review_img_url}
-                alt={review.review_id}
-              />
-              <p className="text-base px-2 text-justify">
-                {review.review_body}
-              </p>
+            <div className="m-auto flex flex-col justify-center w-full">
+              <div className="m-auto flex justify-center md:w-1/2 px-4">
+                <img
+                  className="m-auto px-4 pb-2 rounded-3xl"
+                  src={review.review_img_url}
+                  alt={review.review_id}
+                />
+              </div>
+              <div className="m-auto inline-block text-base px-6 text-justify">
+                <p>{review.review_body}</p>
+              </div>
             </div>
-            <div className="flex justify-evenly w-60">
+            <div className="flex justify-evenly pt-2 sm:w-2/5 lg:w-1/5">
               <VotesButton
                 review_id={review.review_id}
                 originalVote={review.votes}
               />
             </div>
-            {review.owner === user.username ? (
-              <ReviewDeleteButton
-                review={review}
-                reviewList={[review]}
-                setReviewList={setReview}
+            <div className="flex flex-col">
+              <Comments
+                review_id={review.review_id}
+                comment_count={review.comment_count}
               />
-            ) : null}
-            <p>{review.comment_count} Comments</p>
-            <Expandable>
-              <Comments review_id={review.review_id} />
-            </Expandable>
+            </div>
+            <div>
+              {review.owner === user.username ? (
+                <ReviewDeleteButton
+                  review={review}
+                  reviewList={[review]}
+                  setReviewList={setReview}
+                />
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "./UserContext";
 import postReview from "./api-interaction/postReview";
 import getCategories from "./api-interaction/getCategories";
+import Loading from "./Loading";
 
 export default function ReviewForm({ allReviews, setAllReviews }) {
   const { user } = useContext(UserContext);
@@ -38,17 +39,13 @@ export default function ReviewForm({ allReviews, setAllReviews }) {
   };
   if (isLoading) {
     return (
-      <div className="m-auto">
-        <h3 className="text-xl font-bold"> Loading...</h3>
-        <br />
-        <div>
-          <p className="loader"></p>
-        </div>
+      <div className="m-auto flex justify-center">
+        <Loading />
       </div>
     );
   } else
     return (
-      <div className="flex justify-center">
+      <div className="flex flex-col justify-center">
         <div className="px-8">
           <form
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -101,7 +98,9 @@ export default function ReviewForm({ allReviews, setAllReviews }) {
                   <option value="">Choose a category</option>
                   {allCategories.map((category, i) => {
                     return (
-                      <option value={category.slug}>{category.slug}</option>
+                      <option key={category.slug} value={category.slug}>
+                        {category.slug}
+                      </option>
                     );
                   })}
                 </select>
@@ -111,7 +110,7 @@ export default function ReviewForm({ allReviews, setAllReviews }) {
               <label className="block text-gray-700 text-sm font-bold mb-2 text-left">
                 Review Body:
                 <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full h-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   onChange={(event) => {
                     setBody(event.target.value);
                     setError(null);
@@ -139,17 +138,19 @@ export default function ReviewForm({ allReviews, setAllReviews }) {
               >
                 Reset
               </button>
-              <p className="text-sm">
-                {error ? "Please fill out all fields." : null}
-              </p>
+              <p className="text-sm"></p>
               <p className="text-sm">
                 {postSuccessful ? postSuccessful : null}
               </p>
               <button
-                className="btn bg-teal-200 hover:bg-teal-300 text-xs"
+                className={
+                  error
+                    ? "btn bg-red-500 text-sm text-black rounded"
+                    : "btn bg-teal-200 hover:bg-teal-500 text-sm text-black rounded"
+                }
                 type="submit"
               >
-                Add Review
+                {error ? "Please fill out all fields" : "Submit"}
               </button>
             </div>
           </form>

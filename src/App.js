@@ -5,7 +5,6 @@ import Header from "./components/Header";
 import About from "./components/About";
 import Reviews from "./components/Reviews";
 import Categories from "./components/Categories";
-import SingleCategory from "./components/SingleCategory";
 import SingleReview from "./components/SingleReview";
 import NotFoundPage from "./components/NotFoundPage";
 import Users from "./components/Users";
@@ -28,10 +27,6 @@ function App() {
             <Route path="/" element={<About />}></Route>
             <Route path="/reviews" element={<Reviews />}></Route>
             <Route path="/categories" element={<Categories />}></Route>
-            <Route
-              path="/reviews/category/:category_slug"
-              element={<SingleCategory />}
-            />
             <Route path="/reviews/id/:review_id" element={<SingleReview />} />
             <Route path="/users/" element={<Users />} />
             <Route path="*" element={<NotFoundPage />}></Route>

@@ -47,15 +47,21 @@ export default function AddComment({
             }}
           />
         </label>
-        <button
-          type="submit"
-          className="px-3 py-2 text-sm text-black bg-white hover:bg-teal-200 rounded"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
+        <div className="flex justify-end py-2">
+          <button
+            type="submit"
+            className={
+              badComment
+                ? "flex flex-end px-3 py-2 text-sm text-black bg-red-500 rounded"
+                : "flex flex-end px-3 py-2 text-sm text-black bg-white hover:bg-teal-500 rounded"
+            }
+            onClick={handleSubmit}
+          >
+            {badComment ? "Please write a comment before submitting" : "Submit"}
+          </button>
+        </div>
       </form>
-      {badComment ? <p>Please write a comment before submitting</p> : null}
+
       {err ? <p>Something went wrong, comment not posted.</p> : null}
     </div>
   );

@@ -21,7 +21,7 @@ function NavigatePages({
     setSearchParams(searchParams);
   }
   return (
-    <>
+    <div className="text-center bg-teal-500">
       <button onClick={PrevPage} className={page === 1 ? "hidden" : ""}>
         <ArrowLeftIcon className="h-7 w-7 rounded-full" />
       </button>
@@ -41,7 +41,7 @@ function NavigatePages({
       <p className={error ? "text-base" : "hidden"}>
         Error: Could not change page.
       </p>
-    </>
+    </div>
   );
 }
 

@@ -64,7 +64,7 @@ function CommentVotesButton({ comment_id, originalVote }) {
   }
 
   return (
-    <>
+    <div className="flex md:w-2/5 lg:w-1/5 justify-evenly">
       <button onClick={upVote} disabled={decreased}>
         <ArrowCircleUpIcon
           className={
@@ -89,7 +89,7 @@ function CommentVotesButton({ comment_id, originalVote }) {
       <p className={error ? "text-base" : "hidden"}>
         Error: Could not update votes.
       </p>
-    </>
+    </div>
   );
 }
 

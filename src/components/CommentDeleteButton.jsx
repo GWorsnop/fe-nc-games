@@ -28,15 +28,18 @@ export default function CommentDeleteButton({
       });
   }
   return (
-    <>
+    <div className="flex justify-center">
       <button
-        className="justify-self-center text-center w-1/3 rounded-lg btn-blue"
+        className={
+          error
+            ? "px-3 py-2 text-sm text-black bg-red-500 rounded"
+            : "px-3 py-2 text-sm text-black bg-teal-200 hover:bg-red-500 rounded"
+        }
         onClick={handleDelete}
         disabled={disable}
       >
-        Delete
+        {error ? "Error: Could not delete Comment" : "Delete Comment"}
       </button>
-      {error ? <p>Error: Could not delete comment.</p> : null}
-    </>
+    </div>
   );
 }

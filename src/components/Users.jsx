@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 
 function Users() {
   const [allUsers, setAllUsers] = useState([]);
@@ -21,10 +22,10 @@ function Users() {
     return (
       <div className="m-auto">
         <div>
-          <h3 className="text-xl font-bold"> Choose your user: </h3>
+          <h3 className="text-4xl text-center"> Choose your user </h3>
           <br />
-          <div>
-            <p className="loader"></p>
+          <div className="flex justify-center">
+            <Loading />
           </div>
         </div>
       </div>
@@ -32,34 +33,36 @@ function Users() {
   } else
     return (
       <div>
-        <h3 className="text-xl font-bold"> Choose your user: </h3>
+        <h3 className="text-4xl text-center"> Choose your user </h3>
         <br />
-        <div className="grid gap-4 grid-cols-3 grid-rows-2 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-center">
           {allUsers.map((user, i) => {
             return (
               <div
                 key={user.username}
-                className="w-60 bg-slate-400 rounded-md shadow-md mb-4"
+                className="w-60 bg-teal-200 rounded-md shadow-md mb-4 text-center"
               >
-                <h3 className="text-xl font-semibold text-black">
+                <h3 className="text-xl font-semibold text-black text-center">
                   {user.name}
                 </h3>
-                <h3 className="text-l font-semibold text-black">
+                <h3 className="text-l font-semibold text-black text-center">
                   <i>{user.username}</i>
                 </h3>
                 <img
-                  className="profile m-auto max-h-20 "
+                  className="profile m-auto max-h-20 border-2 rounded-md border-teal-500"
                   src={user.avatar_url}
                   alt={user.username}
                 />
-                <Link to={`/`}>
-                  <button
-                    className="btn bg-white hover:bg-green-100 text-black text-xs"
-                    onClick={() => setUser(user)}
-                  >
-                    Choose User
-                  </button>
-                </Link>
+                <div className="flex justify-center">
+                  <Link to={`/`}>
+                    <button
+                      className="btn bg-white hover:bg-teal-500 text-black text-xs m-auto"
+                      onClick={() => setUser(user)}
+                    >
+                      Choose User
+                    </button>
+                  </Link>
+                </div>
               </div>
             );
           })}

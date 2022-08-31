@@ -22,10 +22,10 @@ export default function CategoryForm({ allCategories, setAllCategories }) {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col justify-center">
       <div className="px-8">
         <form
-          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 h-60"
+          className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={handleSubmit}
         >
           <div className="mb-6">
@@ -48,7 +48,7 @@ export default function CategoryForm({ allCategories, setAllCategories }) {
             <label className="block text-gray-700 text-sm font-bold mb-2 text-left">
               Category Description:
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow appearance-none border rounded w-full h-20 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onChange={(event) => {
                   setCategoryDesc(event.target.value);
                   setError(null);
@@ -74,15 +74,16 @@ export default function CategoryForm({ allCategories, setAllCategories }) {
             >
               Reset
             </button>
-            <p className="text-sm">
-              {error ? "Please fill out all fields." : null}
-            </p>
             <p className="text-sm">{postSuccessful ? postSuccessful : null}</p>
             <button
-              className="btn bg-teal-200 hover:bg-teal-300 text-xs"
+              className={
+                error
+                  ? "btn bg-red-500 text-sm text-black rounded"
+                  : "btn bg-teal-200 hover:bg-teal-500 text-sm text-black rounded"
+              }
               type="submit"
             >
-              Add Category
+              {error ? "Please fill out all fields" : "Submit"}
             </button>
           </div>
         </form>

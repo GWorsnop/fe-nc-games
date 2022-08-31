@@ -1,12 +1,15 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useNavigate } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function HeaderNavBar() {
+  let navigate = useNavigate();
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -29,54 +32,54 @@ export default function HeaderNavBar() {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="/"
+                <p
+                  onClick={() => navigate("/")}
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
                   About
-                </a>
+                </p>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="/reviews"
+                <p
+                  onClick={() => navigate("/reviews")}
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
                   Reviews
-                </a>
+                </p>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="/categories"
+                <p
+                  onClick={() => navigate("/categories")}
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
                   Categories
-                </a>
+                </p>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="/users"
+                <p
+                  onClick={() => navigate("/users")}
                   className={classNames(
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                     "block px-4 py-2 text-sm"
                   )}
                 >
                   Users
-                </a>
+                </p>
               )}
             </Menu.Item>
           </div>
