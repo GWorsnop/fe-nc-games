@@ -9,7 +9,7 @@ Hosted Site: https://gworsnop-nc-games.netlify.app/
 ## Introduction
 
 ### This repository contains the front-end NC-Games project. To see the backend repository, visit https://github.com/GWorsnop/nc-games 
-### Or to view the hosted API, visit https://nc-games-gworsnop.herokuapp.com/
+### Or to view the hosted API, visit https://nc-games-backend-nfl0.onrender.com
 
 NC-Games is an application that serves news data in a similar manner to websites such as Reddit. It is a social website designed to The purpose of the site is to replicate an online community that facilitate board game ratings and discussion. Northcoders Games has game reviews which are divided into categories. Each review has user curated ratings which can be up or down voted using the API. Users can also add comments about a review. This site was created with the intention to consolidate my understanding of making a C.R.U.D application from a front end perspective.
 
